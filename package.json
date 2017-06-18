@@ -1,0 +1,38 @@
+{
+  "name": "dui",
+  "version": "0.0.1",
+  "description": "Dxy UI component library",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "demo": "gulp nodemon",
+    "test": "test"
+  },
+  "keywords": [
+    "css",
+    "html",
+    "js",
+    "ui",
+    "component"
+  ],
+  "author": "xiang",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "7.1.1",
+    "cssnano": "3.10.0",
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.2",
+    "gulp-concat-css": "2.3.0",
+    "gulp-postcss": "7.0.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "3.1.0",
+    "koa": "2.2.0",
+    "koa-static": "3.0.0",
+    "normalize.css": "7.0.0"
+  },
+  "dependencies": {
+    "gulp-changed": "3.1.0",
+    "normalize": "0.3.1",
+    "normalize-scss": "7.0.0"
+  }
+}

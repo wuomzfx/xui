@@ -1,0 +1,7 @@
+@import '../variables';
+.xui-list {
+  
+  & .xui-list-item {
+    border: $border-color;
+  }
+}

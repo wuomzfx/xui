@@ -1,0 +1,13 @@
+@import '../variables';
+.xui-btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+
+  & .xui-primary {
+    color: $white;
+    background: $color-primary;
+  }
+}
