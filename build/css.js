@@ -5,7 +5,6 @@ const postcss = require('gulp-postcss')
 const cssnano = require('cssnano')
 const clean = require('gulp-clean')
 const rename = require('gulp-rename')
-const path = require('path')
 const changed = require('gulp-changed')
 const { cssFileName, cssFilesPath, cssBundlePath } = require('./config')
 
@@ -19,7 +18,7 @@ const deleteFiles = (files) => {
   })
 }
 
-const buildScss = async files => {
+const buildScss = async () => {
   return new Promise((resolve, reject) => {
     return gulp.src('./src/sass/**/*.scss')
       .pipe(changed(cssFilesPath, {extension: '.css'}))
@@ -58,7 +57,7 @@ module.exports = async (files) => {
   } else {
     await deleteFiles('./dist/**/*.css')
   }
-  await buildScss(files)
+  await buildScss()
   await concatFiles()
   await minifyCss()
   console.log('build scss end')
