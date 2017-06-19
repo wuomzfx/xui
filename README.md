@@ -2,6 +2,9 @@
 纯ui库脚手架
 
 # how to use
+
+**require node > 7.0.0**
+
 ```bash
 cd xui
 npm install
