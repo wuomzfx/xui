@@ -6,7 +6,7 @@ const cssnano = require('cssnano')
 const clean = require('gulp-clean')
 const rename = require('gulp-rename')
 const changed = require('gulp-changed')
-const { cssFileName, cssFilesPath, cssBundlePath } = require('./config')
+const { cssFileName, cssFilesPath, cssBundlePath, sassSrcPath } = require('./config')
 
 const deleteFiles = (files) => {
   return new Promise((resolve, reject) => {
@@ -18,10 +18,16 @@ const deleteFiles = (files) => {
   })
 }
 
-const buildScss = async () => {
+const buildScss = async (files) => {
+  // 判断是否存在不需要编译（既是被引用的）的文件，如果是则需要重新编译全部文件。
+  const hasBeImportFiles = !!(files || []).find(f => f.indexOf('/_') >= 0 || f.indexOf('\_') >= 0)
+  const changeFiles =
+        hasBeImportFiles ?
+        gulp.src(sassSrcPath) :
+        gulp.src(sassSrcPath)
+            .pipe(changed(cssFilesPath, {extension: '.css'}))
   return new Promise((resolve, reject) => {
-    return gulp.src('./src/sass/**/*.scss')
-      .pipe(changed(cssFilesPath, {extension: '.css'}))
+    return changeFiles
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(postcss())
       .pipe(gulp.dest(cssFilesPath))
@@ -57,7 +63,7 @@ module.exports = async (files) => {
   } else {
     await deleteFiles('./dist/**/*.css')
   }
-  await buildScss()
+  await buildScss(files)
   await concatFiles()
   await minifyCss()
   console.log('build scss end')

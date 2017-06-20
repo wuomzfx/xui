@@ -5,9 +5,12 @@
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
 
-  & .xui-primary {
+  &.xui-primary {
     color: $white;
-    background: $color-primary;
+    background-color: $color-primary;
   }
 }
